@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>GODSTRIKE // ELITE COMBAT MATRIX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- INITIAL COLD BOOT BOOTSTRAPPER -->
+    <div id="boot-splash" class="splash-screen">
+        <div class="splash-content">
+            <h1 class="splash-logo">GODSTRIKE</h1>
+            <div class="connection-status">// SECURING QUANTUM LINK TO SHARD SERVERS...</div>
+            <div class="progress-bar-container">
+                <div id="boot-progress-fill" class="progress-fill"></div>
+            </div>
+            <div class="splash-footer">CORE V5.00 // ULTRA JUICE ENGINE TRACERS</div>
+        </div>
+    </div>
+
+    <!-- MAIN TACTICAL COMMAND HUB MENU -->
+    <div id="start-menu" class="hidden">
+        <div class="menu-overlay"></div>
+        <div class="menu-content">
+            <div class="menu-left">
+                <div class="branding-header">
+                    <h1 class="game-title">GODSTRIKE</h1>
+                    <div class="rank-badge-container">
+                        <span id="rank-name-display" class="rank-text">RECRUIT I</span> 
+                        <span id="rank-points-display" class="rank-points">0 / 500 RP</span>
+                    </div>
+                </div>
+                
+                <div class="mode-grid">
+                    <button class="mode-card active" data-mode="TRAINING">
+                        <div class="mode-title">🎯 WEAPONS TRAINING FIELD</div>
+                        <div class="mode-desc">Calibrate 360° angles against vectors. Vision blocking active. Safe zone offline.</div>
+                    </button>
+                    <button class="mode-card" data-mode="NORMAL">
+                        <div class="mode-title">🦅 MULTIPLAYER SKIRMISH</div>
+                        <div class="mode-desc">Standard deployment with line-of-sight ambushes. Safe zone offline.</div>
+                    </button>
+                    <button class="mode-card ranked-card" data-mode="RANKED">
+                        <div class="mode-title">🔥 RANKED NEURAL BATTLE ROYALE</div>
+                        <div class="mode-desc">High stakes combat. Shrinking safe zone boundary active. Scale difficulty every 500 RP!</div>
+                    </button>
+                </div>
+
+                <div class="save-status-indicator">// ARCHIVE STATUS: SYSTEM CORE LINK SYNCHRONIZED</div>
+                <button id="start-btn">DEPLOY TO THE BATTLEFIELD</button>
+            </div>
+
+            <div class="menu-right">
+                <div class="panel-tabs">
+                    <button class="tab-btn active" data-tab="video">VIDEO</button>
+                    <button class="tab-btn" data-tab="audio">AUDIO</button>
+                    <button class="tab-btn" data-tab="sensitivity">SENSITIVITY</button>
+                </div>
+
+                <div class="tab-content-container">
+                    <div id="tab-video" class="tab-panel">
+                        <div class="setting-item">
+                            <label>GRAPHICS ENGINE PROFILE</label>
+                            <select id="setting-graphics">
+                                <option value="LOW">LOW (MAX PERFORMANCE)</option>
+                                <option value="HIGH" selected>FUTURISTIC ULTRA NEON (HIGH-TECH)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>PARTICLE DENSITY EFFECT MATRIX</label>
+                            <select id="setting-particles">
+                                <option value="OFF">OFF</option>
+                                <option value="ON" selected>BLOOM, SPARKS & TRACERS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="tab-audio" class="tab-panel hidden">
+                        <div class="setting-item">
+                            <label>MASTER WEAPON AUDIO VOL</label>
+                            <input type="range" id="slider-vol-master" min="0" max="100" value="80">
+                        </div>
+                        <div class="setting-item">
+                            <label>AMBIENT COMBAT SYNTH SFX</label>
+                            <input type="range" id="slider-vol-sfx" min="0" max="100" value="70">
+                        </div>
+                    </div>
+
+                    <div id="tab-sensitivity" class="tab-panel hidden">
+                        <div class="setting-item">
+                            <label>LEFT TOUCHPAD MOTOR ACCEL</label>
+                            <input type="range" id="slider-sens-move" min="50" max="200" value="100">
+                        </div>
+                        <div class="setting-item">
+                            <label>RIGHT TOUCH SWEEP SENSITIVITY</label>
+                            <input type="range" id="slider-sens-look" min="50" max="200" value="110">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRE-MATCH LOADING SCREEN DISPLAY -->
+    <div id="match-loading" class="splash-screen hidden">
+        <div class="splash-content">
+            <div class="loading-alert">// SECURING HARDWARE RE-ROUTE HANDSHAKE...</div>
+            <h2 id="loading-mode-title" class="loading-mode-header">MATCHMAKING...</h2>
+            <div id="loading-difficulty-warning" class="difficulty-warning-lbl">DIFFICULTY LEVEL: CALIBRATING...</div>
+            <p class="loading-tip">TACTICAL TIP: Leaving matches causes an instant forfeit reduction of -25 RP. Progress saves automatically in your cloud local drive partition!</p>
+            <div class="progress-bar-container">
+                <div id="match-progress-fill" class="progress-fill match-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IN-GAME CONFIGURATION PAUSE ENGINE -->
+    <div id="pause-menu" class="hidden">
+        <div class="pause-overlay"></div>
+        <div class="pause-card">
+            <div class="pause-header">// SYSTEM SUSPENDED</div>
+            <div class="pause-settings-segment">
+                <div class="setting-item inline-setting">
+                    <label>SFX VOL</label>
+                    <input type="range" id="pause-slider-sfx" min="0" max="100" value="70">
+                </div>
+                <div class="setting-item inline-setting">
+                    <label>AIM SENS</label>
+                    <input type="range" id="pause-slider-sens" min="50" max="200" value="110">
+                </div>
+            </div>
+            <div class="pause-btn-stack">
+                <button id="resume-game-btn" class="pause-action-btn btn-cyan">RESUME OPERATION</button>
+                <button id="trigger-quit-warning-btn" class="pause-action-btn btn-magenta">ABANDON MATCH</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRITICAL RANK REDUCTION CAUTION OVERLAY -->
+    <div id="quit-warning-menu" class="hidden">
+        <div class="pause-overlay warning-glow"></div>
+        <div class="pause-card border-warning">
+            <div class="warning-icon">⚠️</div>
+            <div class="pause-header warning-txt">CRITICAL CAUTION</div>
+            <p class="warning-desc">
+                Abandonding active deployments forces an immediate synchronization loss. 
+                <br><br>
+                <span class="highlight-warning">WARNING: Your Rank Score will decrease by -25 RP!</span>
+                <br><br>
+                Do you still wish to abort operation?
+            </p>
+            <div class="warning-btn-row">
+                <button id="confirm-quit-yes-btn" class="warning-btn btn-danger">YES, FORFEIT</button>
+                <button id="confirm-quit-no-btn" class="warning-btn btn-safe">NO, CONTINUE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERMISSION DISPLAY PANELS -->
+    <div id="level-complete-screen" class="hidden">
+        <div class="intermission-card border-cyan">
+            <div class="status-alert text-cyan">VICTORY SECURED</div>
+            <div class="rp-gain-display">// ARCHIVE LOCKED: <span id="rp-gain-value">+40 RP</span></div>
+            <div class="rp-summary-lbl" id="victory-rp-summary">CURRENT: 0 / 500 RP</div>
+            <button id="next-level-btn" class="action-btn btn-cyan">RETURN TO HUB</button>
+        </div>
+    </div>
+
+    <div id="level-failed-screen" class="hidden">
+        <div class="intermission-card border-magenta">
+            <div class="status-alert text-magenta">KIA // MISSION FAILURE</div>
+            <div class="rp-gain-display">// RECON COMPENSATION: <span id="rp-loss-value">+15 RP</span></div>
+            <div class="rp-summary-lbl" id="failed-rp-summary">CURRENT: 0 / 500 RP</div>
+            <button id="fail-home-btn" class="action-btn btn-magenta">RE-INITIALIZE LINK</button>
+        </div>
+    </div>
+
+    <!-- RUNTIME HUD OVERLAY LAYER -->
+    <div id="ui-layer" class="hidden">
+        <div class="hud-top-left">
+            <div class="hud-brand">GODSTRIKE NET CONSOLE</div>
+            <div class="hud-metric">MODE: <span id="current-mode-ui">RANKED</span></div>
+            <div class="hud-metric">METRIC PROFILE: <span id="hud-rp-tracker" class="txt-amber">0 / 500 RP</span></div>
+            <div class="hud-metric">COMPUTED DIFFICULT: <span id="hud-difficulty-multiplier" class="text-magenta">x1.00</span></div>
+            <div id="zone-timer-ui" class="hud-metric zone-alert-text hidden">ZONE COLLAPSE IMMINENT</div>
+        </div>
+
+        <div class="hud-top-right">
+            <div class="counter-box border-magenta">
+                <div class="counter-lbl">HOSTILES</div>
+                <div class="counter-num txt-magenta" id="enemies-remaining-ui">0</div>
+            </div>
+            <div class="counter-box border-cyan">
+                <div class="counter-lbl">ELIMINATIONS</div>
+                <div class="counter-num txt-cyan" id="kills-ui">0</div>
+            </div>
+        </div>
+
+        <button id="pause-trigger-btn">⚙️ MENU</button>
+
+        <!-- TACTICAL ACTION PANEL WITH QUANTUM SPEED EVADE -->
+        <div id="tactical-equipment-panel">
+            <button id="btn-deploy-dash" class="eq-btn dash-btn">
+                <span class="eq-icon">⚡</span>
+                <span class="eq-label">EVADE</span>
+                <div id="dash-cooldown-overlay" class="cooldown-effect"></div>
+            </button>
+            <button id="btn-deploy-shield" class="eq-btn">
+                <span class="eq-icon">🛡️</span>
+                <span class="eq-label">SHIELD</span>
+                <div id="shield-cooldown-overlay" class="cooldown-effect"></div>
+            </button>
+            <button id="btn-deploy-bomb" class="eq-btn">
+                <span class="eq-icon">💣</span>
+                <span class="eq-label">PLASMA</span>
+                <div id="bomb-cooldown-overlay" class="cooldown-effect"></div>
+            </button>
+        </div>
+
+        <!-- HUD HEALTH MONITOR MATRIX -->
+        <div class="hud-bottom-bar">
+            <div class="metric-container">
+                <div class="vital-label-row">
+                    <span class="metric-label">VITAL BIO-MATRIX RATIO</span>
+                    <span id="regen-status-ui" class="regen-indicator text-cyan">SYSTEM STABLE</span>
+                </div>
+                <div class="bar-frame"><div id="hp-bar-fill"></div></div>
+                <div class="metric-value"><span id="health-ui">100</span>%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CANVAS RUNTIME RENDER TARGET -->
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="game.js"></script>
+</body>
+</html>
